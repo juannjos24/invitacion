@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <!-- Flyer PROVISIONAL. Reemplaza colocando el flyer oficial en assets/flyer.jpg -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="35%" r="75%">
+      <stop offset="0" stop-color="#2a2208"/><stop offset=".55" stop-color="#0f0f11"/><stop offset="1" stop-color="#050506"/>
+    </radialGradient>
+    <linearGradient id="ray" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5b800" stop-opacity=".55"/><stop offset="1" stop-color="#f5b800" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe08a"/><stop offset=".5" stop-color="#f5b800"/><stop offset="1" stop-color="#a87400"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1350" fill="url(#bg)"/>
+  <g transform="translate(540 330)" opacity=".9">
+    <polygon points="0,0 -520,-700 -380,-700" fill="url(#ray)"/>
+    <polygon points="0,0 -220,-700 -80,-700" fill="url(#ray)"/>
+    <polygon points="0,0 80,-700 220,-700" fill="url(#ray)"/>
+    <polygon points="0,0 380,-700 520,-700" fill="url(#ray)"/>
+    <polygon points="0,0 -700,-300 -700,-150" fill="url(#ray)"/>
+    <polygon points="0,0 700,-300 700,-150" fill="url(#ray)"/>
+  </g>
+  <circle cx="540" cy="330" r="140" fill="#f5b800" opacity=".12"/>
+  <circle cx="540" cy="330" r="70" fill="#ffe08a" opacity=".25"/>
+  <g font-family="Impact, 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" text-anchor="middle" fill="#fff">
+    <text x="540" y="200" font-size="46" letter-spacing="14" fill="#f5b800">VIGILIA JUVENIL Y DE ORACIÓN</text>
+    <text x="540" y="560" font-size="150" fill="url(#gold)">DIOS NO</text>
+    <text x="540" y="700" font-size="150" fill="url(#gold)">DESISTE</text>
+    <text x="540" y="790" font-size="48" font-family="Georgia, serif" font-style="italic" fill="#ffd95a">“Cuando oramos, el cielo actúa”</text>
+    <text x="540" y="900" font-size="54" letter-spacing="6">SÁBADO 10 DE OCTUBRE · 2026</text>
+    <text x="540" y="965" font-size="44" fill="#f5b800" letter-spacing="4">17:00 — 23:00 HRS</text>
+    <text x="540" y="1060" font-size="38" font-family="Arial, sans-serif" fill="#e8e8e8">Pr. Octavio Rosas · Pr. Yolman Mendez · Pr. David Magaña</text>
+    <text x="540" y="1130" font-size="36" font-family="Arial, sans-serif" fill="#bdbdbd">Música especial (El Sonar) · Testimonios · Oración · Mensajes · Renovación</text>
+    <text x="540" y="1230" font-size="44" letter-spacing="6" fill="#f5b800">IASD PORTALES</text>
+    <text x="540" y="1290" font-size="30" font-family="Arial, sans-serif" fill="#8a8a8a">Sociedad de Jóvenes IASD Portales · Bando de Oración</text>
+  </g>
+</svg>

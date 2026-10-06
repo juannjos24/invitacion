@@ -1,0 +1,30 @@
+/* op1 — Toca hasta abrir */
+
+/* Indicador de toques (5 puntos) */
+.taps { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+.taps i {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: rgba(255,255,255,.15); box-shadow: inset 0 0 0 1px rgba(245,184,0,.4);
+  transition: background .3s, transform .3s var(--ease-back), box-shadow .3s;
+}
+.taps i.on { background: var(--gold); transform: scale(1.25); box-shadow: 0 0 12px rgba(245,184,0,.8); }
+
+/* Pulso suave para invitar a tocar */
+.envelope.pulse { animation: pulse 2.2s ease-in-out infinite; }
+@keyframes pulse {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.02); }
+}
+
+/* Destello del sello cuando se agrieta */
+.env-seal.hit { animation: hit .35s var(--ease-out); }
+@keyframes hit {
+  0% { filter: brightness(1) drop-shadow(0 4px 6px rgba(0,0,0,.4)); }
+  40% { filter: brightness(1.7) drop-shadow(0 0 16px var(--gold)); }
+  100% { filter: brightness(1) drop-shadow(0 4px 6px rgba(0,0,0,.4)); }
+}
+
+/* Texto final sobre el flyer */
+.reveal .after {
+  font-family: var(--font-hand); color: var(--gold-2); font-size: 1.5rem; margin: 0;
+}

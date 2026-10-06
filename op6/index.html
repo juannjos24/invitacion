@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sobre 3D · DIOS NO DESISTE</title>
+  <meta name="description" content="Vigilia Juvenil y de Oración — Sábado 10 de octubre de 2026, 17:00 a 23:00 hrs, IASD Portales.">
+  <!-- Open Graph: URL de GitHub Pages (cámbiala si cambias de repo) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DIOS NO DESISTE · Vigilia Juvenil y de Oración">
+  <meta property="og:description" content="Cuando oramos, el cielo actúa. Sábado 10 de octubre de 2026 · 17:00–23:00 · IASD Portales. Gira y abre tu invitación.">
+  <meta property="og:image" content="https://juannjos24.github.io/invitacion/assets/flyer.jpg">
+  <meta property="og:url" content="https://juannjos24.github.io/invitacion/op6/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2746%27 fill=%27%23f5b800%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27%231a1206%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E%E2%9C%89%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0a0a0c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=Montserrat:wght@400;600;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="particles" class="particles" aria-hidden="true"></canvas>
+  <div class="rays" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="back" href="../">← Opciones</a>
+    <div id="sound-slot"></div>
+  </header>
+
+  <main class="stage" id="stage">
+    <p class="kicker">Vigilia Juvenil y de Oración</p>
+    <h1 class="title">Tienes una invitación</h1>
+    <div class="scene" id="scene">
+      <div class="floaty">
+        <div class="env-3d" id="env3d"></div>
+      </div>
+    </div>
+    <p class="hint" id="hint" aria-live="polite">Arrastra para girar · Toca para abrir</p>
+  </main>
+
+  <section class="reveal" id="reveal" hidden>
+    <div class="flip-card" id="card">
+      <div class="flip-inner" id="flip-inner">
+        <div class="face front" id="front"></div>
+        <div class="face back"><article id="letter"></article></div>
+      </div>
+    </div>
+    <button class="btn" id="flip-btn" aria-pressed="false"></button>
+    <div id="actions"></div>
+  </section>
+
+  <script src="../assets/js/common.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
