@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex">
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kaushan+Script&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/base.css">
   <link rel="stylesheet" href="sticker.css">
 </head>
@@ -19,12 +19,19 @@
       <a class="back" href="../">← Invitación</a>
       <p class="kicker">Vigilia Juvenil y de Oración</p>
       <h1>Generador de stickers de WhatsApp</h1>
-      <p class="muted">Sube uno o muchos flyers y obtén un sticker animado por cada uno: el sobre se abre y sale el flyer.
+      <p class="muted">Escribe los nombres (o sube flyers ya hechos) y obtén un sticker animado por cada uno: el sobre se abre y sale el flyer con el nombre.
         WebP 512×512, fondo transparente, menos de 500 KB. Todo se procesa en tu navegador.</p>
       <p class="warn" id="support" hidden>Tu navegador no puede codificar WebP. Usa Chrome, Edge, Brave u Opera.</p>
     </header>
 
     <section class="panel">
+      <label class="names-label" for="names">Nombres, uno por línea (se escriben dentro del flyer)</label>
+      <textarea id="names" rows="4" placeholder="Oscar&#10;María José&#10;Pedro"></textarea>
+      <div class="opts" style="margin-top:10px">
+        <button class="btn btn-gold" id="byNames" type="button">Generar stickers con estos nombres</button>
+        <button class="btn btn-ghost" id="generic" type="button">Sticker genérico (sin nombre)</button>
+      </div>
+      <p class="muted small" style="margin:14px 0 6px">O bien, sube flyers ya terminados:</p>
       <label class="drop" id="drop">
         <input type="file" id="files" accept="image/*" multiple hidden>
         <span class="drop-ico" aria-hidden="true">🖼️</span>
@@ -39,7 +46,6 @@
         <label>Calidad inicial
           <select id="quality"><option value="0.65" selected>Alta</option><option value="0.5">Media</option><option value="0.4">Baja</option></select>
         </label>
-        <button class="btn btn-ghost" id="demo" type="button">Probar con el flyer del sobre</button>
         <button class="btn btn-gold" id="downloadAll" type="button" disabled>Descargar todos</button>
       </div>
       <p class="muted small">La calidad aplica a los fotogramas en movimiento; el flyer final siempre va en alta. Si un sticker pasa de 500 KB se baja la calidad automáticamente (y luego los fotogramas) hasta que quepa.</p>
@@ -65,6 +71,8 @@
     </section>
   </main>
 
+  <script src="../assets/js/names.js"></script>
+  <script src="../assets/js/flyer.js"></script>
   <script src="sticker.js"></script>
 </body>
 </html>

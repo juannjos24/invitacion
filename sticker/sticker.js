@@ -224,8 +224,9 @@ function renderFrame(ctx, scratch, t, flyer) {
 
 /* ---------- Preparar el flyer (recorte centrado a 2:3 aprox.) ---------- */
 function prepareFlyer(img) {
-  let ratio = clamp(img.naturalWidth / img.naturalHeight, 0.55, 0.8);
-  let sw = img.naturalWidth, sh = img.naturalHeight, sx = 0, sy = 0;
+  const iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height;
+  let ratio = clamp(iw / ih, 0.55, 0.8);
+  let sw = iw, sh = ih, sx = 0, sy = 0;
   if (sw / sh > ratio) { const nw = sh * ratio; sx = (sw - nw) / 2; sw = nw; }
   else { const nh = sw / ratio; sy = (sh - nh) / 2; sh = nh; }
   const h = FLYER_FINAL_H * 2, w = Math.round(h * ratio);     // 2x para que se vea nítido al escalar
@@ -430,11 +431,12 @@ async function processQueue() {
   busy = true;
   previewWrap.hidden = false;
   while (queue.length) {
-    const { item, file } = queue.shift();
+    const { item, file, nombre } = queue.shift();
     previewWrap.querySelector('h2').textContent = `Renderizando ${item.name}`;
     item.el.querySelector('.meta').textContent = 'Procesando…';
     try {
-      const img = await loadImage(file);
+      // Por nombre: se dibuja dentro del flyer base (flyer.js). Por archivo: se usa tal cual.
+      const img = file ? await loadImage(file) : await Flyer.render(nombre, { base: '../assets/flyer-base.jpg' });
       const flyer = prepareFlyer(img);
       const opts = { fps: +$('#fps').value, quality: +$('#quality').value };
       const res = await makeSticker(flyer, opts, previewCtx, (msg) => (progress.textContent = msg));
@@ -462,12 +464,15 @@ const drop = $('#drop');
 ['dragleave', 'drop'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove('over'); }));
 drop.addEventListener('drop', (e) => enqueueFiles(e.dataTransfer.files));
 
-$('#demo').addEventListener('click', async () => {
-  try {
-    const blob = await (await fetch('../assets/flyer.jpg')).blob();
-    enqueueFiles([new File([blob], 'flyer.jpg', { type: 'image/jpeg' })]);
-  } catch { alert('No se pudo cargar ../assets/flyer.jpg (abre la página desde un servidor local).'); }
-});
+const slug = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+function enqueueNames(names) {
+  names.map((n) => n.trim()).filter(Boolean).forEach((nombre) => {
+    queue.push({ item: addItem(`${slug(nombre) || 'sticker'}.webp`), nombre });
+  });
+  processQueue();
+}
+$('#byNames').addEventListener('click', () => enqueueNames($('#names').value.split(/\n|,|;/)));
+$('#generic').addEventListener('click', () => { queue.push({ item: addItem('invitacion.webp'), nombre: '' }); processQueue(); });
 
 $('#downloadAll').addEventListener('click', async () => {
   for (const item of items.filter((i) => i.blob)) {

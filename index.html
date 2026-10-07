@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DIOS NO DESISTE · Invitación animada</title>
-  <meta name="description" content="Vigilia Juvenil y de Oración — Sábado 10 de octubre de 2026, IASD Portales. Elige una versión de la invitación.">
+  <title>DIOS NO DESISTE · Tu invitación</title>
+  <meta name="description" content="Vigilia Juvenil y de Oración — Sábado 10 de octubre de 2026, 17:00 a 23:00 hrs, IASD Portales.">
   <!-- Open Graph: URL de GitHub Pages (cámbiala si cambias de repo) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="DIOS NO DESISTE · Vigilia Juvenil y de Oración">
-  <meta property="og:description" content="Cuando oramos, el cielo actúa. Sábado 10 de octubre de 2026 · 17:00–23:00 · IASD Portales">
+  <meta property="og:description" content="Cuando oramos, el cielo actúa. Sábado 10 de octubre de 2026 · 17:00–23:00 · IASD Portales. ¡Toca para abrir tu invitación!">
   <meta property="og:image" content="https://juannjos24.github.io/invitacion/assets/flyer.jpg">
   <meta property="og:url" content="https://juannjos24.github.io/invitacion/">
   <meta name="twitter:card" content="summary_large_image">
@@ -16,63 +16,36 @@
   <meta name="theme-color" content="#0a0a0c">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=Montserrat:wght@400;600;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=Montserrat:wght@400;600;800&family=Permanent+Marker&family=Kaushan+Script&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/base.css">
-  <style>
-    .home { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 48px 16px 56px; }
-    .home-head { text-align: center; margin-bottom: 32px; }
-    .home-head .lema { font-family: var(--font-hand); font-size: 1.6rem; color: var(--gold-2); margin: 6px 0 0; }
-    .home-head .meta { color: var(--muted); font-size: .85rem; margin: 8px 0 0; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-    .card {
-      position: relative; display: block; text-decoration: none; color: inherit;
-      background: linear-gradient(160deg, var(--bg-2), #0e0e10); border: 1px solid rgba(245,184,0,.2);
-      border-radius: 16px; padding: 20px 18px 18px; overflow: hidden;
-      transition: transform .25s var(--ease-out), border-color .25s, box-shadow .25s;
-    }
-    .card:hover, .card:focus-visible { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,.5), 0 0 40px rgba(245,184,0,.12); outline: none; }
-    .card .num { font-family: var(--font-display); font-size: 2.6rem; color: var(--gold); line-height: 1; letter-spacing: .05em; }
-    .card h2 { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: .06em; margin: 6px 0 6px; }
-    .card p { margin: 0; color: var(--muted); font-size: .85rem; }
-    .card .tag { position: absolute; top: 14px; right: 14px; font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold-2); background: rgba(245,184,0,.12); padding: 4px 8px; border-radius: 999px; }
-    .card .go { display: inline-block; margin-top: 12px; font-size: .78rem; font-weight: 700; color: var(--gold-2); }
-    .home-foot { text-align: center; color: var(--muted); font-size: .75rem; margin-top: 36px; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <canvas id="particles" class="particles" aria-hidden="true"></canvas>
   <div class="rays" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
 
-  <main class="home">
-    <header class="home-head">
-      <p class="kicker">Vigilia Juvenil y de Oración</p>
-      <h1 class="title" style="margin-bottom:0">DIOS NO DESISTE</h1>
-      <p class="lema">“Cuando oramos, el cielo actúa”</p>
-      <p class="meta">Sábado 10 de octubre de 2026 · 17:00–23:00 hrs · IASD Portales</p>
-      <p class="meta">Elige la versión de la invitación que quieras compartir:</p>
-    </header>
+  <header class="topbar">
+    <div id="sound-slot"></div>
+  </header>
 
-    <nav class="grid" aria-label="Versiones de la invitación">
-      <a class="card" href="op1/"><span class="tag">Interactiva</span><span class="num">01</span>
-        <h2>Toca hasta abrir</h2><p>El sello se agrieta con cada toque. Al quinto se rompe, la solapa se abre y el flyer sale a pantalla completa.</p><span class="go">Abrir →</span></a>
-      <a class="card" href="op2/"><span class="tag">Automática</span><span class="num">02</span>
-        <h2>Abre solo al llegar</h2><p>El sobre cae con rebote, se abre solo y el flyer aparece con brillo dorado. Ideal para compartir el link y ya.</p><span class="go">Abrir →</span></a>
-      <a class="card" href="op3/"><span class="tag">Carta</span><span class="num">03</span>
-        <h2>Carta animada</h2><p>Un toque abre el sobre y sale una carta con los datos: título a brocha, lema a máquina, programa, oradores y cuenta regresiva.</p><span class="go">Abrir →</span></a>
-      <a class="card" href="op4/"><span class="tag">Experiencia</span><span class="num">04</span>
-        <h2>De la oscuridad a Su luz</h2><p>Pantalla a oscuras y una linterna que sigue tu dedo. Encuentra el sobre y una explosión de luz lo revela todo.</p><span class="go">Abrir →</span></a>
-      <a class="card" href="op5/"><span class="tag">Gesto</span><span class="num">05</span>
-        <h2>Rompe el sello</h2><p>Desliza el sello hacia arriba; la solapa sigue tu dedo. Al completar, la carta se desenrolla como pergamino.</p><span class="go">Abrir →</span></a>
-      <a class="card" href="op6/"><span class="tag">3D</span><span class="num">06</span>
-        <h2>Sobre 3D</h2><p>Sobre flotando en 3D que puedes girar. Al tocarlo se abre y sale una tarjeta que se voltea: flyer al frente, datos atrás.</p><span class="go">Abrir →</span></a>
-    </nav>
+  <main class="stage" id="stage">
+    <p class="kicker">Vigilia Juvenil y de Oración</p>
+    <h1 class="title" id="title">Tienes una invitación</h1>
 
-    <p class="home-foot"><a href="sticker/">Generador de stickers de WhatsApp →</a></p>
-    <p class="home-foot">Sociedad de Jóvenes IASD Portales · Bando de Oración</p>
+    <div class="envelope-wrap" id="envelope-slot"></div>
+
+    <p class="hint" id="hint" aria-live="polite">Toca el sobre para abrirlo</p>
+    <div class="taps" id="taps" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i>
+    </div>
   </main>
 
+  <section class="reveal" id="reveal" hidden aria-live="polite"></section>
+
+  <script src="assets/js/names.js"></script>
+  <script src="assets/js/flyer.js"></script>
   <script src="assets/js/common.js"></script>
-  <script>initCommon();</script>
+  <script src="app.js"></script>
 </body>
 </html>

@@ -44,9 +44,26 @@ const EVENT = {
     { nombre: 'Mensajes poderosos', detalle: '', icono: 'flame' },
     { nombre: 'Renovación', detalle: '', icono: 'sun' },
   ],
-  flyer: '../assets/flyer.jpg',
-  flyerFallback: '../assets/flyer-placeholder.svg',
+  flyer: 'assets/flyer.jpg',               // se reemplaza por el flyer con nombre (Flyer.prepare)
+  flyerFallback: 'assets/flyer-placeholder.svg',
 };
+
+/* ---------- Invitado: nombre en la URL (?n=Nombre, ?nombre=Nombre o #Nombre) ---------- */
+const slugify = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+/** Busca el nombre de la URL en NAMES (names.js). Si no está registrado, manda a la invitación genérica. */
+function resolveGuest() {
+  const params = new URLSearchParams(location.search);
+  let raw = params.get('n') || params.get('nombre') || '';
+  if (!raw && location.hash.length > 1) { try { raw = decodeURIComponent(location.hash.slice(1)); } catch (e) { raw = ''; } }
+  if (!raw.trim()) return null;
+  const slug = slugify(raw);
+  const list = typeof NAMES !== 'undefined' ? NAMES : [];
+  const nombre = list.find((n) => slugify(n) === slug);
+  if (!nombre) { location.replace(location.pathname); return null; }   // no registrado → genérica
+  return { nombre, slug };
+}
+const GUEST = resolveGuest();
 
 /* ---------- Helpers generales ---------- */
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -125,7 +142,7 @@ function downloadICS() {
 /** Abre WhatsApp con un mensaje listo para compartir. */
 function shareWhatsApp() {
   const link = location.href;
-  const text = `🙏 *${EVENT.titulo}* — ${EVENT.tipo}\n"${EVENT.lema}"\n\n` +
+  const text = (GUEST ? `${GUEST.nombre}, ` : '') + `🙏 *${EVENT.titulo}* — ${EVENT.tipo}\n"${EVENT.lema}"\n\n` +
     `📅 ${EVENT.fechaTexto} · ${EVENT.horarioTexto}\n📍 ${EVENT.lugarCorto}\n\n¡Ven! 👉 ${link}`;
   window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
 }

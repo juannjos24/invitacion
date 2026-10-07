@@ -4,6 +4,8 @@
    El sobre requiere 5 toques. Cada toque: tiembla, el sello se
    agrieta y se actualiza el contador. Al 5º: se rompe el sello,
    se abre la solapa y el flyer sale a pantalla completa.
+   La invitación se personaliza con el nombre de la URL (GUEST,
+   ver common.js y names.js): el nombre se dibuja dentro del flyer.
    ============================================================ */
 initCommon();
 
@@ -13,7 +15,14 @@ const hint = $('#hint');
 const dots = $$('#taps i');
 const reveal = $('#reveal');
 
+if (GUEST) {
+  $('#title').textContent = `${GUEST.nombre}, tienes una invitación`;
+  document.title = `${GUEST.nombre}, tienes una invitación · ${EVENT.titulo}`;
+}
 const env = createEnvelope({ inner: 'flyer' });
+// Dibuja el nombre dentro del flyer y actualiza la imagen del sobre
+Flyer.prepare(GUEST ? GUEST.nombre : '').then((url) => { if (url) $('img', env.inner).src = url; });
+
 env.el.classList.add('pulse');
 env.el.setAttribute('role', 'button');
 env.el.setAttribute('tabindex', '0');
