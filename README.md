@@ -26,7 +26,7 @@ dentro de la imagen**. Debajo del flyer solo hay dos botones: "Ver" y "Cómo lle
 3. El nombre se dibuja con canvas dentro del flyer, en dos lugares: la línea grande bajo "Hola"
    y la franja "¡Te esperamos, Nombre! ♡". Los nombres largos se encogen solos para caber.
 4. Si el nombre de la URL **no está en la lista**, la página redirige a la invitación genérica
-   (`/` sin parámetros), que dice "Hola Joven," y "¡Te esperamos!" sobre el flyer de hombre. Texto y
+   (`/` sin parámetros), que dice "Hola Amigo," y "¡Te esperamos!" sobre el flyer de hombre. Texto y
    flyer de la genérica se cambian en `GENERIC` dentro de `names.js`.
 
 El título de la página y el mensaje de "Compartir por WhatsApp" también llevan el nombre.

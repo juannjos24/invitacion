@@ -31,6 +31,6 @@ const NAMES = [
 /* Invitación genérica (cuando no hay nombre o no está registrado) */
 const GENERIC = {
   genero: 'hombre',            // qué flyer usar de fondo
-  nombre: 'Joven',             // línea grande bajo "Hola" → "Hola Joven,"
+  nombre: 'Amigo',             // línea grande bajo "Hola" → "Hola Amigo,"
   despedida: '¡Te esperamos!', // franja de abajo
 };
