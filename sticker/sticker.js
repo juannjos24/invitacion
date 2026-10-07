@@ -470,13 +470,15 @@ const REGISTERED = typeof NAMES !== 'undefined' ? NAMES : [];
 function parseLine(line) {
   const [n, g] = line.split(/[,;|]/).map((s) => s.trim());
   if (!n) return null;
+  if (/^(m|mujer)$/i.test(n)) return { nombre: '', genero: 'mujer', file: 'generica-mujer' };   // genérico mujer
+  if (/^(h|hombre)$/i.test(n)) return { nombre: '', genero: 'hombre', file: 'generica-hombre' };
   const reg = REGISTERED.find((r) => slug(r.nombre) === slug(n));
   const genero = /^m/i.test(g || '') ? 'mujer' : /^h/i.test(g || '') ? 'hombre' : reg ? reg.genero : undefined;
   return { nombre: reg ? reg.nombre : n, genero };
 }
 function enqueueNames(lines) {
-  lines.map(parseLine).filter(Boolean).forEach(({ nombre, genero }) => {
-    queue.push({ item: addItem(`${slug(nombre) || 'sticker'}.webp`), nombre, genero });
+  lines.map(parseLine).filter(Boolean).forEach(({ nombre, genero, file }) => {
+    queue.push({ item: addItem(`${file || slug(nombre) || 'sticker'}.webp`), nombre, genero });
   });
   processQueue();
 }

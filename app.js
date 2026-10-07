@@ -15,13 +15,13 @@ const hint = $('#hint');
 const reveal = $('#reveal');
 const flash = $('#flash');
 
-if (GUEST) {
+if (GUEST && GUEST.nombre) {
   $('#title').textContent = `${GUEST.nombre}, tienes una invitación`;
   document.title = `${GUEST.nombre}, tienes una invitación · ${EVENT.titulo}`;
 }
 const env = createEnvelope({ inner: 'flyer' });
 // Dibuja el nombre dentro del flyer y actualiza la imagen del sobre
-Flyer.prepare(GUEST ? GUEST.nombre : '', { genero: GUEST ? GUEST.genero : undefined }).then((url) => { if (url) $('img', env.inner).src = url; });
+Flyer.prepare(GUEST ? GUEST.nombre : '', { genero: GENERO }).then((url) => { if (url) $('img', env.inner).src = url; });
 
 env.el.classList.add('jitter');                 // tintineo en reposo
 env.el.style.setProperty('--level', '0');

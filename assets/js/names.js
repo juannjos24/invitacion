@@ -28,9 +28,10 @@ const NAMES = [
   { nombre: 'Heber',    genero: 'hombre' },
 ];
 
-/* Invitación genérica (cuando no hay nombre o no está registrado) */
+/* Invitación genérica (cuando no hay nombre o no está registrado).
+   La raíz sola (o ?n=H) usa la de hombre; con ?n=M sale la de mujer. */
 const GENERIC = {
-  genero: 'hombre',            // qué flyer usar de fondo
-  nombre: 'Amigo',             // línea grande bajo "Hola" → "Hola Amigo,"
-  despedida: '¡Te esperamos!', // franja de abajo
+  genero: 'hombre',                            // flyer por defecto cuando no se indica
+  nombres: { hombre: 'Amigo', mujer: 'Amiga' }, // línea grande bajo "Hola" → "Hola Amigo," / "Hola Amiga,"
+  despedida: '¡Te esperamos!',                 // franja de abajo
 };

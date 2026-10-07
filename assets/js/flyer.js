@@ -57,8 +57,10 @@ const Flyer = (() => {
    *        prefix = ruta hasta la raíz del sitio ('' en index, '../' en sticker/)
    */
   async function render(nombre = '', { genero, prefix = '' } = {}) {
-    const gen = typeof GENERIC !== 'undefined' ? GENERIC : { genero: 'hombre', nombre: 'Joven', despedida: '¡Te esperamos!' };
-    const v = VERSIONS[genero] || VERSIONS[gen.genero] || VERSIONS.hombre;
+    const gen = typeof GENERIC !== 'undefined' ? GENERIC : { genero: 'hombre', nombres: { hombre: 'Amigo', mujer: 'Amiga' }, despedida: '¡Te esperamos!' };
+    const g = VERSIONS[genero] ? genero : (VERSIONS[gen.genero] ? gen.genero : 'hombre');
+    const v = VERSIONS[g];
+    const genNombre = (gen.nombres && gen.nombres[g]) || gen.nombre || 'Amigo';
     const INK = v.ink;
     const [img] = await Promise.all([loadBase(prefix + v.base), fontsReady()]);
     const c = document.createElement('canvas');
@@ -73,7 +75,7 @@ const Flyer = (() => {
     ctx.fillStyle = INK; ctx.strokeStyle = INK; ctx.textBaseline = 'alphabetic';
 
     // 1) Línea grande bajo "Hola"
-    const big = `${n || gen.nombre},`;
+    const big = `${n || genNombre},`;
     const bigSize = fitText(ctx, big, POS.nombre.size, POS.nombre.maxWidth);
     // si el nombre es largo y se encoge, se sube un poco para que quede centrado en la franja
     ctx.fillText(big, POS.nombre.x, POS.nombre.baseline - (POS.nombre.size - bigSize) * 0.4);

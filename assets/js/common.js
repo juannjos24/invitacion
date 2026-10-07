@@ -60,13 +60,18 @@ function resolveGuest() {
   if (!raw && location.hash.length > 1) { try { raw = decodeURIComponent(location.hash.slice(1)); } catch (e) { raw = ''; } }
   if (!raw.trim()) return null;
   const slug = slugify(raw);
+  // ?n=M → genérica de mujer, ?n=H → genérica de hombre (sin nombre)
+  if (slug === 'm' || slug === 'mujer') return { generic: true, genero: 'mujer' };
+  if (slug === 'h' || slug === 'hombre') return { generic: true, genero: 'hombre' };
   const list = typeof NAMES !== 'undefined' ? NAMES : [];
   const found = list.find((n) => slugify(n.nombre) === slug);
   if (!found) { location.replace(location.pathname); return null; }   // no registrado → genérica
   return { nombre: found.nombre, genero: found.genero === 'mujer' ? 'mujer' : 'hombre', slug };
 }
 const GUEST = resolveGuest();
-EVENT.flyer = EVENT.flyers[GUEST ? GUEST.genero : (typeof GENERIC !== 'undefined' && GENERIC.genero) || 'hombre'] || EVENT.flyer;
+/** Género del flyer a mostrar (invitado, genérica M/H o la genérica por defecto). */
+const GENERO = GUEST ? GUEST.genero : ((typeof GENERIC !== 'undefined' && GENERIC.genero) || 'hombre');
+EVENT.flyer = EVENT.flyers[GENERO] || EVENT.flyer;
 
 /* ---------- Helpers generales ---------- */
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -145,7 +150,7 @@ function downloadICS() {
 /** Abre WhatsApp con un mensaje listo para compartir. */
 function shareWhatsApp() {
   const link = location.href;
-  const text = (GUEST ? `${GUEST.nombre}, ` : '') + `🙏 *${EVENT.titulo}* — ${EVENT.tipo}\n"${EVENT.lema}"\n\n` +
+  const text = (GUEST && GUEST.nombre ? `${GUEST.nombre}, ` : '') + `🙏 *${EVENT.titulo}* — ${EVENT.tipo}\n"${EVENT.lema}"\n\n` +
     `📅 ${EVENT.fechaTexto} · ${EVENT.horarioTexto}\n📍 ${EVENT.lugarCorto}\n\n¡Ven! 👉 ${link}`;
   window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
 }
