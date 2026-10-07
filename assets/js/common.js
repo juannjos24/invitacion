@@ -176,11 +176,11 @@ function closeFlyer() { const box = $('#lightbox'); if (box) box.hidden = true; 
 /** Barra de acciones al final de cada experiencia. */
 function renderActionBar(container, { flyerBtn = true } = {}) {
   container.classList.add('actions');
+  // Solo dos botones: "Ver" (flyer en grande) y "Cómo llegar". Calendario y WhatsApp siguen
+  // disponibles en downloadICS() / shareWhatsApp() por si se quieren volver a mostrar.
   container.innerHTML = `
-    <button class="btn" data-act="cal">${ICONS.calendar} Agregar a mi calendario</button>
-    <button class="btn" data-act="wa">${ICONS.whatsapp} Compartir por WhatsApp</button>
-    <button class="btn" data-act="map">${ICONS.map} Cómo llegar</button>
-    ${flyerBtn ? `<button class="btn btn-ghost" data-act="flyer">${ICONS.image} Ver flyer</button>` : ''}`;
+    ${flyerBtn ? `<button class="btn" data-act="flyer">${ICONS.image} Ver</button>` : ''}
+    <button class="btn btn-ghost" data-act="map">${ICONS.map} Cómo llegar</button>`;
   container.addEventListener('click', (e) => {
     const b = e.target.closest('[data-act]'); if (!b) return;
     vibrate(10);

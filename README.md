@@ -1,12 +1,13 @@
 # DIOS NO DESISTE · Invitación animada en forma de sobre
 
 Sitio estático (solo HTML, CSS y JavaScript vanilla, sin build ni dependencias) con la invitación
-digital de la Vigilia Juvenil y de Oración de IASD Portales: un sobre que se abre con cinco toques
-y revela el flyer **con el nombre del invitado escrito dentro de la imagen**.
+digital de la Vigilia Juvenil y de Oración de IASD Portales: un sobre que tintinea, vibra más con
+cada toque y al quinto explota en luz para revelar el flyer **con el nombre del invitado escrito
+dentro de la imagen**. Debajo del flyer solo hay dos botones: "Ver" y "Cómo llegar".
 
 | Ruta        | Qué es                                                                 |
 |-------------|------------------------------------------------------------------------|
-| `/`         | La invitación (sobre "Toca hasta abrir"). Acepta `?n=Nombre`.          |
+| `/`         | La invitación (sobre que vibra y explota). Acepta `?n=Nombre`.          |
 | `/sticker/` | Generador de stickers animados de WhatsApp (por nombres o por archivo) |
 
 ## Invitaciones personalizadas por URL
@@ -34,7 +35,7 @@ El título de la página y el mensaje de "Compartir por WhatsApp" también lleva
 
 ```
 index.html                 → la invitación (sobre + flyer a pantalla completa)
-app.js / style.css         → lógica y estilos propios del sobre "Toca hasta abrir"
+app.js / style.css         → lógica y estilos del sobre (tintineo, toques, explosión)
 assets/flyer-base-hombre.jpg → FLYER SIN NOMBRE, versión hombre (fondo sobre el que se escribe)
 assets/flyer-base-mujer.jpg  → FLYER SIN NOMBRE, versión mujer
 assets/flayer_hombre.jpeg    → originales del diseñador ("Hola Amigo," / "Hola Amiga,"): respaldo
