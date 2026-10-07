@@ -53,11 +53,14 @@ const EVENT = {
 /* ---------- Invitado: nombre en la URL (?n=Nombre, ?nombre=Nombre o #Nombre) ---------- */
 const slugify = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
   .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-/** Busca el nombre de la URL en NAMES (names.js). Si no está registrado, manda a la invitación genérica. */
+/** Busca el nombre de la URL en NAMES (names.js). Si no está registrado, manda a la invitación genérica.
+ *  Las páginas por invitado (/nombre/, generadas por tools/build-guests.js) fijan el nombre con
+ *  window.GUEST_SLUG antes de cargar este archivo, para que la vista previa de WhatsApp sea personalizada. */
 function resolveGuest() {
   const params = new URLSearchParams(location.search);
   let raw = params.get('n') || params.get('nombre') || '';
   if (!raw && location.hash.length > 1) { try { raw = decodeURIComponent(location.hash.slice(1)); } catch (e) { raw = ''; } }
+  if (!raw && typeof window.GUEST_SLUG === 'string') raw = window.GUEST_SLUG;
   if (!raw.trim()) return null;
   const slug = slugify(raw);
   // ?n=M → genérica de mujer, ?n=H → genérica de hombre (sin nombre)

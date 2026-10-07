@@ -93,6 +93,21 @@ const Flyer = (() => {
     return c;
   }
 
+  /** Recorte horizontal (1200×630) de la parte alta del flyer, para la vista previa del enlace
+   *  (og:image de WhatsApp/Facebook): título, oveja y "Hola Nombre,". Lo usa tools/og.html. */
+  const OG = { w: 1200, h: 630, top: 20 };               // top = fila (en 853×1280) donde empieza el recorte
+  async function renderOG(nombre = '', opts = {}) {
+    const full = await render(nombre, opts);
+    const k = full.width / BASE_W;
+    const srcH = Math.round(full.width * OG.h / OG.w);  // alto del recorte con el ancho completo
+    const c = document.createElement('canvas');
+    c.width = OG.w; c.height = OG.h;
+    const ctx = c.getContext('2d');
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(full, 0, Math.round(OG.top * k), full.width, srcH, 0, 0, OG.w, OG.h);
+    return c;
+  }
+
   function toBlobURL(canvas) {
     return new Promise((res) => canvas.toBlob((b) => res(URL.createObjectURL(b)), 'image/jpeg', .92));
   }
@@ -109,5 +124,5 @@ const Flyer = (() => {
     }
   }
 
-  return { render, prepare, POS, VERSIONS };
+  return { render, renderOG, prepare, POS, VERSIONS, OG };
 })();

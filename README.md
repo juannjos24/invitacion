@@ -8,7 +8,9 @@ dentro de la imagen**. Al final se ve solo el flyer, sin botones ni texto.
 | Ruta        | Qué es                                                                 |
 |-------------|------------------------------------------------------------------------|
 | `/`         | La invitación (sobre que vibra y explota). Acepta `?n=Nombre`.          |
+| `/nombre/`  | La misma invitación, una carpeta por invitado, con vista previa de WhatsApp personalizada (generadas) |
 | `/sticker/` | Generador de stickers animados de WhatsApp (por nombres o por archivo) |
+| `/tools/og.html` | Genera las imágenes de vista previa (`assets/og/*.jpg`) en el navegador |
 
 ## Invitaciones personalizadas por URL
 
@@ -32,6 +34,28 @@ dentro de la imagen**. Al final se ve solo el flyer, sin botones ni texto.
 
 El título de la página y el mensaje de "Compartir por WhatsApp" también llevan el nombre.
 
+## Vista previa personalizada en WhatsApp (páginas por invitado)
+
+WhatsApp **no ejecuta JavaScript**: lee las etiquetas `og:title` / `og:image` del HTML tal cual
+llega del servidor. Como GitHub Pages sirve el mismo `index.html` para cualquier `?n=`, todos los
+enlaces con `?n=` muestran la vista previa genérica. Para que la vista previa lleve el nombre, cada
+invitado tiene su propia carpeta (`/joey/`, `/lore/`…) con sus etiquetas. Son copias generadas de
+`index.html` (con `<base href="../">` y `window.GUEST_SLUG`), así que la invitación es la misma.
+
+Para agregar invitados:
+
+1. Registra el nombre en `assets/js/names.js`.
+2. Abre `tools/og.html` en el navegador (desde un servidor local, p. ej. `python3 -m http.server`),
+   pulsa **Generar todas** y luego **Descargar todas**; guarda los `.jpg` en `assets/og/`.
+   Son recortes de 1200×630 de la parte alta del flyer con "Hola Nombre," (ver `Flyer.renderOG`).
+   Si falta la imagen de un nombre, su página usa la genérica de su género (`hombre.jpg` / `mujer.jpg`).
+3. Corre `node tools/build-guests.js`: crea `<slug>/index.html` por cada nombre y `enlaces.md`
+   con la lista de enlaces para compartir.
+4. Haz commit y push. Los enlaces son `https://juannjos24.github.io/invitacion/<slug>/`
+   (el slug es el nombre en minúsculas y sin acentos: Anahí → `anahi`).
+
+Los enlaces `?n=Nombre` siguen funcionando, pero con vista previa genérica.
+
 ## Estructura
 
 ```
@@ -40,9 +64,14 @@ app.js / style.css         → lógica y estilos del sobre (tintineo, toques, ex
 assets/flyer-base-hombre.jpg → FLYER SIN NOMBRE, versión hombre (fondo sobre el que se escribe)
 assets/flyer-base-mujer.jpg  → FLYER SIN NOMBRE, versión mujer
 assets/flayer_hombre.jpeg    → originales del diseñador ("Hola Amigo," / "Hola Amiga,"): respaldo
-assets/flayer_mujer.jpeg       si falla el canvas y vista previa del enlace (og:image)
+assets/flayer_mujer.jpeg       si falla el canvas
+assets/og/<slug>.jpg       → vistas previas 1200×630 para WhatsApp (generadas con tools/og.html)
 assets/js/names.js         → NOMBRES registrados y textos genéricos
-assets/js/flyer.js         → dibuja el nombre dentro del flyer (canvas); posiciones en Flyer.POS
+assets/js/flyer.js         → dibuja el nombre dentro del flyer (canvas); posiciones en Flyer.POS; renderOG
+<slug>/index.html          → página por invitado GENERADA (no editar: node tools/build-guests.js)
+tools/build-guests.js      → genera las páginas por invitado y enlaces.md (Node, sin dependencias)
+tools/og.html + og.js      → generador de vistas previas en el navegador
+enlaces.md                 → lista de enlaces personalizados (generado)
 assets/js/common.js        → EVENT (datos), invitado (GUEST), .ics, WhatsApp, mapa, sobre, sonido
 assets/css/base.css        → variables, tipografías, sobre, botones
 sticker/                   → generador de stickers animados (index.html + sticker.js)
