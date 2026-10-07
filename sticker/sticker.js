@@ -431,12 +431,12 @@ async function processQueue() {
   busy = true;
   previewWrap.hidden = false;
   while (queue.length) {
-    const { item, file, nombre } = queue.shift();
+    const { item, file, nombre, genero } = queue.shift();
     previewWrap.querySelector('h2').textContent = `Renderizando ${item.name}`;
     item.el.querySelector('.meta').textContent = 'Procesando…';
     try {
       // Por nombre: se dibuja dentro del flyer base (flyer.js). Por archivo: se usa tal cual.
-      const img = file ? await loadImage(file) : await Flyer.render(nombre, { base: '../assets/flyer-base.jpg' });
+      const img = file ? await loadImage(file) : await Flyer.render(nombre, { genero, prefix: '../' });
       const flyer = prepareFlyer(img);
       const opts = { fps: +$('#fps').value, quality: +$('#quality').value };
       const res = await makeSticker(flyer, opts, previewCtx, (msg) => (progress.textContent = msg));
@@ -465,13 +465,23 @@ const drop = $('#drop');
 drop.addEventListener('drop', (e) => enqueueFiles(e.dataTransfer.files));
 
 const slug = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-function enqueueNames(names) {
-  names.map((n) => n.trim()).filter(Boolean).forEach((nombre) => {
-    queue.push({ item: addItem(`${slug(nombre) || 'sticker'}.webp`), nombre });
+const REGISTERED = typeof NAMES !== 'undefined' ? NAMES : [];
+/** "Nombre" o "Nombre, mujer|hombre" → { nombre, genero } (si está registrado, manda su género). */
+function parseLine(line) {
+  const [n, g] = line.split(/[,;|]/).map((s) => s.trim());
+  if (!n) return null;
+  const reg = REGISTERED.find((r) => slug(r.nombre) === slug(n));
+  const genero = /^m/i.test(g || '') ? 'mujer' : /^h/i.test(g || '') ? 'hombre' : reg ? reg.genero : undefined;
+  return { nombre: reg ? reg.nombre : n, genero };
+}
+function enqueueNames(lines) {
+  lines.map(parseLine).filter(Boolean).forEach(({ nombre, genero }) => {
+    queue.push({ item: addItem(`${slug(nombre) || 'sticker'}.webp`), nombre, genero });
   });
   processQueue();
 }
-$('#byNames').addEventListener('click', () => enqueueNames($('#names').value.split(/\n|,|;/)));
+$('#byNames').addEventListener('click', () => enqueueNames($('#names').value.split(/\n/)));
+$('#loadNames').addEventListener('click', () => { $('#names').value = REGISTERED.map((r) => `${r.nombre}, ${r.genero}`).join('\n'); });
 $('#generic').addEventListener('click', () => { queue.push({ item: addItem('invitacion.webp'), nombre: '' }); processQueue(); });
 
 $('#downloadAll').addEventListener('click', async () => {

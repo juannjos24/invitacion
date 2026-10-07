@@ -1,14 +1,19 @@
 'use strict';
 /* ============================================================
    flyer.js — Dibuja el nombre DENTRO de la imagen del flyer.
-   Usa assets/flyer-base.jpg (el flyer sin nombre) y escribe con
-   canvas la línea grande bajo "Hola" y la franja "¡Te esperamos…!".
+   Usa el flyer sin nombre de cada género (assets/flyer-base-*.jpg)
+   y escribe con canvas la línea grande bajo "Hola" y la franja
+   "¡Te esperamos…!".
    Lo comparten la invitación (index) y el generador de stickers.
    ============================================================ */
 const Flyer = (() => {
   const BASE_W = 853;                                   // ancho con el que se calibraron las posiciones
   const FONT = '"Kaushan Script", "Caveat", cursive';   // caligrafía parecida a la del flyer
-  const INK = '#1c1a17';
+  // Fondo sin nombre y color de tinta de cada versión (rutas relativas a la raíz del sitio)
+  const VERSIONS = {
+    hombre: { base: 'assets/flyer-base-hombre.jpg', ink: '#15171a' },
+    mujer:  { base: 'assets/flyer-base-mujer.jpg',  ink: '#13203a' },
+  };
   const POS = {
     nombre:    { x: 500, baseline: 322, size: 112, maxWidth: 282 },               // "Oscar," bajo "Hola"
     despedida: { cx: 452, baseline: 1168, size: 42, maxWidth: 320, angle: -2.5 }, // "¡Te esperamos, Oscar! ♡"
@@ -48,16 +53,19 @@ const Flyer = (() => {
   /**
    * Devuelve un <canvas> con el flyer y el nombre escrito.
    * @param {string} nombre  vacío → textos genéricos (GENERIC en names.js)
-   * @param {{base?:string}} opts ruta del flyer base (según desde dónde se carga)
+   * @param {{genero?:'hombre'|'mujer', prefix?:string}} opts
+   *        prefix = ruta hasta la raíz del sitio ('' en index, '../' en sticker/)
    */
-  async function render(nombre = '', { base = 'assets/flyer-base.jpg' } = {}) {
-    const [img] = await Promise.all([loadBase(base), fontsReady()]);
+  async function render(nombre = '', { genero, prefix = '' } = {}) {
+    const gen = typeof GENERIC !== 'undefined' ? GENERIC : { genero: 'hombre', nombre: 'Joven', despedida: '¡Te esperamos!' };
+    const v = VERSIONS[genero] || VERSIONS[gen.genero] || VERSIONS.hombre;
+    const INK = v.ink;
+    const [img] = await Promise.all([loadBase(prefix + v.base), fontsReady()]);
     const c = document.createElement('canvas');
     c.width = img.naturalWidth; c.height = img.naturalHeight;
     const ctx = c.getContext('2d');
     ctx.drawImage(img, 0, 0);
     const k = c.width / BASE_W;                          // por si el fondo cambia de resolución
-    const gen = typeof GENERIC !== 'undefined' ? GENERIC : { nombre: 'Joven', despedida: '¡Te esperamos!' };
     const n = String(nombre || '').trim();
 
     ctx.save();
@@ -99,5 +107,5 @@ const Flyer = (() => {
     }
   }
 
-  return { render, prepare, POS };
+  return { render, prepare, POS, VERSIONS };
 })();

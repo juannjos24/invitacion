@@ -11,9 +11,13 @@ y revela el flyer **con el nombre del invitado escrito dentro de la imagen**.
 
 ## Invitaciones personalizadas por URL
 
-1. Registra los nombres en `assets/js/names.js`:
+1. Registra los nombres **con su género** en `assets/js/names.js` (el género elige el flyer:
+   oveja negra/amarillo para hombre, oveja con flores/rosa para mujer):
    ```js
-   const NAMES = ['Oscar', 'María José', 'Pedro'];
+   const NAMES = [
+     { nombre: 'Oscar', genero: 'hombre' },
+     { nombre: 'Noemí', genero: 'mujer' },
+   ];
    ```
 2. Comparte a cada persona su enlace: `https://juannjos24.github.io/invitacion/?n=Oscar`
    (también sirven `?nombre=Oscar` o `#Oscar`; no importan mayúsculas, acentos ni espacios:
@@ -21,8 +25,8 @@ y revela el flyer **con el nombre del invitado escrito dentro de la imagen**.
 3. El nombre se dibuja con canvas dentro del flyer, en dos lugares: la línea grande bajo "Hola"
    y la franja "¡Te esperamos, Nombre! ♡". Los nombres largos se encogen solos para caber.
 4. Si el nombre de la URL **no está en la lista**, la página redirige a la invitación genérica
-   (`/` sin parámetros), que dice "Hola Joven," y "¡Te esperamos!". Esos textos se cambian en
-   `GENERIC` dentro de `names.js`.
+   (`/` sin parámetros), que dice "Hola Joven," y "¡Te esperamos!" sobre el flyer de hombre. Texto y
+   flyer de la genérica se cambian en `GENERIC` dentro de `names.js`.
 
 El título de la página y el mensaje de "Compartir por WhatsApp" también llevan el nombre.
 
@@ -31,9 +35,10 @@ El título de la página y el mensaje de "Compartir por WhatsApp" también lleva
 ```
 index.html                 → la invitación (sobre + flyer a pantalla completa)
 app.js / style.css         → lógica y estilos propios del sobre "Toca hasta abrir"
-assets/flyer-base.jpg      → FLYER SIN NOMBRE (fondo sobre el que se escribe el nombre)
-assets/flyer.jpg           → flyer de respaldo y vista previa (og:image) para WhatsApp/Instagram
-assets/flayer_final.jpeg   → flyer original entregado por el diseñador
+assets/flyer-base-hombre.jpg → FLYER SIN NOMBRE, versión hombre (fondo sobre el que se escribe)
+assets/flyer-base-mujer.jpg  → FLYER SIN NOMBRE, versión mujer
+assets/flayer_hombre.jpeg    → originales del diseñador ("Hola Amigo," / "Hola Amiga,"): respaldo
+assets/flayer_mujer.jpeg       si falla el canvas y vista previa del enlace (og:image)
 assets/js/names.js         → NOMBRES registrados y textos genéricos
 assets/js/flyer.js         → dibuja el nombre dentro del flyer (canvas); posiciones en Flyer.POS
 assets/js/common.js        → EVENT (datos), invitado (GUEST), .ics, WhatsApp, mapa, sobre, sonido
@@ -41,8 +46,9 @@ assets/css/base.css        → variables, tipografías, sobre, botones
 sticker/                   → generador de stickers animados (index.html + sticker.js)
 ```
 
-Si cambia el diseño del flyer: reemplaza `assets/flyer-base.jpg` por la nueva versión **sin nombre**
-(misma resolución, 853×1280, o ajusta `Flyer.POS` en `flyer.js` con las nuevas coordenadas).
+Si cambia el diseño del flyer: reemplaza `assets/flyer-base-hombre.jpg` / `-mujer.jpg` por la nueva
+versión **sin nombre** (misma resolución, 853×1280, o ajusta `Flyer.POS` en `flyer.js`). Las rutas y el
+color de tinta de cada versión están en `Flyer.VERSIONS`.
 
 ## Antes de publicar
 
@@ -92,9 +98,10 @@ solapa se abre y el flyer sale del sobre hasta llenar el sticker. Sale como **We
 
 - Abre `sticker/` desde un servidor local (`python3 -m http.server 8080` → `http://localhost:8080/sticker/`)
   o desde GitHub Pages (`https://juannjos24.github.io/invitacion/sticker/`).
-- Escribe los nombres (uno por línea) y pulsa "Generar stickers con estos nombres": usa el mismo
-  `flyer.js` de la invitación, así el sticker lleva el nombre dentro del flyer. También puedes subir
-  flyers ya hechos (JPG/PNG/WebP). Cada uno se descarga como `<nombre>.webp`; "Descargar todos" los baja seguidos.
+- "Cargar todos los registrados" llena la lista con `NAMES` (nombre y género) y "Generar stickers con
+  estos nombres" produce uno por línea usando el mismo `flyer.js` de la invitación. Para un nombre no
+  registrado escribe `Nombre, mujer` o `Nombre, hombre`. También puedes subir flyers ya hechos.
+  Cada uno se descarga como `<nombre>.webp`; "Descargar todos" los baja seguidos.
 - Todo ocurre en el navegador: dibuja la animación en un canvas, codifica cada fotograma con
   `canvas.toBlob('image/webp')` (solo la zona que cambió) y arma el contenedor WebP animado
   (RIFF/VP8X/ANIM/ANMF) a mano. Requiere Chrome, Edge, Brave u Opera (Firefox y Safari no codifican WebP).

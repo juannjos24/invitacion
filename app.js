@@ -21,7 +21,7 @@ if (GUEST) {
 }
 const env = createEnvelope({ inner: 'flyer' });
 // Dibuja el nombre dentro del flyer y actualiza la imagen del sobre
-Flyer.prepare(GUEST ? GUEST.nombre : '').then((url) => { if (url) $('img', env.inner).src = url; });
+Flyer.prepare(GUEST ? GUEST.nombre : '', { genero: GUEST ? GUEST.genero : undefined }).then((url) => { if (url) $('img', env.inner).src = url; });
 
 env.el.classList.add('pulse');
 env.el.setAttribute('role', 'button');

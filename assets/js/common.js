@@ -44,7 +44,9 @@ const EVENT = {
     { nombre: 'Mensajes poderosos', detalle: '', icono: 'flame' },
     { nombre: 'Renovación', detalle: '', icono: 'sun' },
   ],
-  flyer: 'assets/flyer.jpg',               // se reemplaza por el flyer con nombre (Flyer.prepare)
+  // Flyers originales del diseñador (respaldo y vista previa); el que se muestra lo genera Flyer.prepare
+  flyers: { hombre: 'assets/flayer_hombre.jpeg', mujer: 'assets/flayer_mujer.jpeg' },
+  flyer: 'assets/flayer_hombre.jpeg',      // se ajusta según el invitado (ver resolveGuest)
   flyerFallback: 'assets/flyer-placeholder.svg',
 };
 
@@ -59,11 +61,12 @@ function resolveGuest() {
   if (!raw.trim()) return null;
   const slug = slugify(raw);
   const list = typeof NAMES !== 'undefined' ? NAMES : [];
-  const nombre = list.find((n) => slugify(n) === slug);
-  if (!nombre) { location.replace(location.pathname); return null; }   // no registrado → genérica
-  return { nombre, slug };
+  const found = list.find((n) => slugify(n.nombre) === slug);
+  if (!found) { location.replace(location.pathname); return null; }   // no registrado → genérica
+  return { nombre: found.nombre, genero: found.genero === 'mujer' ? 'mujer' : 'hombre', slug };
 }
 const GUEST = resolveGuest();
+EVENT.flyer = EVENT.flyers[GUEST ? GUEST.genero : (typeof GENERIC !== 'undefined' && GENERIC.genero) || 'hombre'] || EVENT.flyer;
 
 /* ---------- Helpers generales ---------- */
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
