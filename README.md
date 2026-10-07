@@ -3,7 +3,7 @@
 Sitio estático (solo HTML, CSS y JavaScript vanilla, sin build ni dependencias) con la invitación
 digital de la Vigilia Juvenil y de Oración de IASD Portales: un sobre que tintinea, vibra más con
 cada toque y al quinto explota en luz para revelar el flyer **con el nombre del invitado escrito
-dentro de la imagen**. Debajo del flyer solo hay dos botones: "Ver" y "Cómo llegar".
+dentro de la imagen**. Al final se ve solo el flyer, sin botones ni texto.
 
 | Ruta        | Qué es                                                                 |
 |-------------|------------------------------------------------------------------------|

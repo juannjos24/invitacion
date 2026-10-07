@@ -76,8 +76,8 @@ async function explode() {
   env.el.classList.add('is-out');
   await wait(850);
 
-  // 4) Se agranda a pantalla completa (FLIP)
-  await revealFlyer($('img', env.inner), { stage, reveal, extraHTML: `<p class="after">${EVENT.frases[2]} ${EVENT.lema}</p>` });
+  // 4) Se agranda a pantalla completa (FLIP). Solo el flyer: sin botones ni texto debajo.
+  await revealFlyer($('img', env.inner), { stage, reveal, actions: false });
   flash.classList.remove('on');
 }
 

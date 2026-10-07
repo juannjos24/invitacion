@@ -389,11 +389,11 @@ function flipFrom(fromEl, toEl, { dur = 750, uniform = false } = {}) {
 }
 
 /** Muestra el flyer a pantalla completa saliendo desde `fromImg`. */
-async function revealFlyer(fromImg, { stage, reveal, extraHTML = '' } = {}) {
-  reveal.innerHTML = `${flyerImgHTML('flyer-full')}<div class="actions"></div>${extraHTML}`;
+async function revealFlyer(fromImg, { stage, reveal, extraHTML = '', actions = true } = {}) {
+  reveal.innerHTML = `${flyerImgHTML('flyer-full')}${actions ? '<div class="actions"></div>' : ''}${extraHTML}`;
   reveal.hidden = false;
   const img = $('.flyer-full', reveal);
-  renderActionBar($('.actions', reveal));
+  if (actions) renderActionBar($('.actions', reveal));
   window.scrollTo({ top: 0 });
   stage.classList.add('is-hidden');
   await flipFrom(fromImg, img, { dur: 800 });
