@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generador de stickers · DIOS NO DESISTE</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="sticker.css">
+</head>
+<body>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <main class="tool">
+    <header class="tool-head">
+      <a class="back" href="../">← Invitación</a>
+      <p class="kicker">Vigilia Juvenil y de Oración</p>
+      <h1>Generador de stickers de WhatsApp</h1>
+      <p class="muted">Sube uno o muchos flyers y obtén un sticker animado por cada uno: el sobre se abre y sale el flyer.
+        WebP 512×512, fondo transparente, menos de 500 KB. Todo se procesa en tu navegador.</p>
+      <p class="warn" id="support" hidden>Tu navegador no puede codificar WebP. Usa Chrome, Edge, Brave u Opera.</p>
+    </header>
+
+    <section class="panel">
+      <label class="drop" id="drop">
+        <input type="file" id="files" accept="image/*" multiple hidden>
+        <span class="drop-ico" aria-hidden="true">🖼️</span>
+        <strong>Arrastra aquí los flyers</strong>
+        <span class="muted">o haz clic para elegirlos · JPG, PNG o WebP · uno por persona</span>
+      </label>
+
+      <div class="opts">
+        <label>Fotogramas por segundo
+          <select id="fps"><option value="12" selected>12 (recomendado)</option><option value="15">15</option><option value="10">10</option></select>
+        </label>
+        <label>Calidad inicial
+          <select id="quality"><option value="0.65" selected>Alta</option><option value="0.5">Media</option><option value="0.4">Baja</option></select>
+        </label>
+        <button class="btn btn-ghost" id="demo" type="button">Probar con el flyer del sobre</button>
+        <button class="btn btn-gold" id="downloadAll" type="button" disabled>Descargar todos</button>
+      </div>
+      <p class="muted small">La calidad aplica a los fotogramas en movimiento; el flyer final siempre va en alta. Si un sticker pasa de 500 KB se baja la calidad automáticamente (y luego los fotogramas) hasta que quepa.</p>
+    </section>
+
+    <section class="preview-wrap" id="previewWrap" hidden>
+      <h2>Renderizando…</h2>
+      <canvas id="preview" width="512" height="512"></canvas>
+      <p class="muted small" id="progress"></p>
+    </section>
+
+    <section class="results" id="results" aria-live="polite"></section>
+
+    <section class="howto">
+      <h2>Cómo enviarlo por WhatsApp</h2>
+      <ol>
+        <li><strong>WhatsApp Web o Escritorio:</strong> arrastra el archivo <code>.webp</code> al chat y se envía como sticker animado.</li>
+        <li><strong>Teléfono:</strong> pasa el <code>.webp</code> al celular e impórtalo con una app de stickers
+          (por ejemplo <em>Sticker Maker</em> o <em>Sticker.ly</em>, opción "importar WebP animado") y agrégalo a WhatsApp.</li>
+        <li>Para hacerlo masivo: sube todos los flyers de una vez y pulsa <strong>Descargar todos</strong>
+          (el navegador pedirá permiso para varias descargas).</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="sticker.js"></script>
+</body>
+</html>

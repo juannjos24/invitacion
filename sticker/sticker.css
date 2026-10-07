@@ -1,0 +1,51 @@
+/* Generador de stickers — estilos propios (base.css aporta paleta y botones) */
+.tool { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+.tool-head { text-align: center; margin-bottom: 20px; }
+.tool-head .back { display: inline-block; margin-bottom: 14px; }
+.tool-head h1 { font-family: var(--font-display); font-size: clamp(2rem, 7vw, 3.2rem); letter-spacing: .04em; color: var(--gold); margin: 4px 0 8px; }
+.kicker { color: var(--gold-2); font-weight: 700; letter-spacing: .25em; text-transform: uppercase; font-size: .72rem; margin: 0; }
+.muted { color: var(--muted); }
+.small { font-size: .82rem; }
+.warn { background: #5a1a1a; color: #ffd4d4; padding: 10px 14px; border-radius: 10px; }
+
+.panel { background: var(--bg-2); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 18px; }
+.drop {
+  display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
+  padding: 34px 16px; border: 2px dashed rgba(245,184,0,.45); border-radius: 14px; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.drop:hover, .drop.over { background: rgba(245,184,0,.08); border-color: var(--gold); }
+.drop-ico { font-size: 2.2rem; }
+
+.opts { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin-top: 16px; }
+.opts label { display: flex; flex-direction: column; gap: 4px; font-size: .78rem; color: var(--muted); }
+.opts select { font: inherit; padding: 8px 10px; border-radius: 10px; background: #000; color: #fff; border: 1px solid rgba(255,255,255,.15); }
+.btn { border: 0; border-radius: 999px; padding: 10px 18px; font-weight: 700; }
+.btn-gold { background: var(--gold); color: #000; }
+.btn-gold:disabled { opacity: .4; cursor: not-allowed; }
+.btn-ghost { background: rgba(255,255,255,.08); color: #fff; }
+
+.preview-wrap { text-align: center; margin-top: 22px; }
+.preview-wrap h2 { font-family: var(--font-display); letter-spacing: .05em; color: var(--gold-2); font-weight: 400; margin: 0 0 8px; }
+#preview {
+  width: min(320px, 80vw); height: auto; border-radius: 16px;
+  background: repeating-conic-gradient(#2a2a2e 0 25%, #1b1b1f 0 50%) 0 0 / 24px 24px; /* damero = transparencia */
+}
+
+.results { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 22px; }
+.item { background: var(--bg-2); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.item img, .item .ph {
+  width: 100%; aspect-ratio: 1; border-radius: 12px; object-fit: contain;
+  background: repeating-conic-gradient(#2a2a2e 0 25%, #1b1b1f 0 50%) 0 0 / 24px 24px;
+}
+.item .ph { display: grid; place-items: center; color: var(--muted); font-size: .85rem; }
+.item .name { font-weight: 600; font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.item .meta { font-size: .78rem; color: var(--muted); }
+.item .meta.ok { color: var(--gold-2); }
+.item .meta.err { color: #ff9b9b; }
+.item .btn { align-self: flex-start; }
+
+.howto { margin-top: 36px; background: var(--bg-2); border-radius: 18px; padding: 18px 22px; }
+.howto h2 { font-family: var(--font-display); letter-spacing: .05em; color: var(--gold); font-weight: 400; margin: 0 0 10px; }
+.howto ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: #ddd; }
+.howto code { background: #000; padding: 1px 6px; border-radius: 6px; }
