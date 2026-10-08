@@ -1,4 +1,23 @@
 'use strict';
+/*
+                    /\
+                   /  \
+                   |  |
+                   |JM|
+                  /|  |\
+                 / |  | \
+                /  |  |  \
+       ________/   |  |   \________
+      /            |  |            \
+      '────────────|  |────────────'
+                   |  |
+                   |  |
+                  /    \
+                 /______\
+
+        Desarrollado por Juan José Moreno Miguel
+                 Stones Solutions · 2026
+*/
 /* ============================================================
    common.js — Utilidades compartidas de la invitación
    - EVENT: todos los datos del evento (edita SOLO aquí)

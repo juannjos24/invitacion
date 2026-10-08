@@ -1,5 +1,24 @@
 #!/usr/bin/env node
 'use strict';
+/*
+                    /\
+                   /  \
+                   |  |
+                   |JM|
+                  /|  |\
+                 / |  | \
+                /  |  |  \
+       ________/   |  |   \________
+      /            |  |            \
+      '────────────|  |────────────'
+                   |  |
+                   |  |
+                  /    \
+                 /______\
+
+        Desarrollado por Juan José Moreno Miguel
+                 Stones Solutions · 2026
+*/
 /* ============================================================
    build-guests.js — Genera una página por invitado (/<slug>/index.html)
    con sus propias etiquetas Open Graph, para que la vista previa del

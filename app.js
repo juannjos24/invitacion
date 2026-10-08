@@ -1,4 +1,23 @@
 'use strict';
+/*
+                    /\
+                   /  \
+                   |  |
+                   |JM|
+                  /|  |\
+                 / |  | \
+                /  |  |  \
+       ________/   |  |   \________
+      /            |  |            \
+      '────────────|  |────────────'
+                   |  |
+                   |  |
+                  /    \
+                 /______\
+
+        Desarrollado por Juan José Moreno Miguel
+                 Stones Solutions · 2026
+*/
 /* ============================================================
    Invitación — "Toca hasta que explote"
    El sobre tintinea solo. Cada toque lo hace vibrar más fuerte y

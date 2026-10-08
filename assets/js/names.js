@@ -1,4 +1,23 @@
 'use strict';
+/*
+                    /\
+                   /  \
+                   |  |
+                   |JM|
+                  /|  |\
+                 / |  | \
+                /  |  |  \
+       ________/   |  |   \________
+      /            |  |            \
+      '────────────|  |────────────'
+                   |  |
+                   |  |
+                  /    \
+                 /______\
+
+        Desarrollado por Juan José Moreno Miguel
+                 Stones Solutions · 2026
+*/
 /* ============================================================
    names.js — NOMBRES REGISTRADOS para invitaciones personalizadas
    Cada nombre lleva su género para elegir el flyer:

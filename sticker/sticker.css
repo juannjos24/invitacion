@@ -1,3 +1,22 @@
+/*
+                    /\
+                   /  \
+                   |  |
+                   |JM|
+                  /|  |\
+                 / |  | \
+                /  |  |  \
+       ________/   |  |   \________
+      /            |  |            \
+      '────────────|  |────────────'
+                   |  |
+                   |  |
+                  /    \
+                 /______\
+
+        Desarrollado por Juan José Moreno Miguel
+                 Stones Solutions · 2026
+*/
 /* Generador de stickers — estilos propios (base.css aporta paleta y botones) */
 .tool { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
 .tool-head { text-align: center; margin-bottom: 20px; }

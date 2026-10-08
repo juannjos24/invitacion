@@ -1,4 +1,23 @@
 'use strict';
+/*
+                    /\
+                   /  \
+                   |  |
+                   |JM|
+                  /|  |\
+                 / |  | \
+                /  |  |  \
+       ________/   |  |   \________
+      /            |  |            \
+      '────────────|  |────────────'
+                   |  |
+                   |  |
+                  /    \
+                 /______\
+
+        Desarrollado por Juan José Moreno Miguel
+                 Stones Solutions · 2026
+*/
 /* ============================================================
    flyer.js — Dibuja el nombre DENTRO de la imagen del flyer.
    Usa el flyer sin nombre de cada género (assets/flyer-base-*.jpg)
