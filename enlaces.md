@@ -40,3 +40,5 @@ Generado por `node tools/build-guests.js`. Cada enlace tiene su propia vista pre
 | Margarito | https://juannjos24.github.io/invitacion/margarito/ | hombre |
 | Jafet | https://juannjos24.github.io/invitacion/jafet/ | hombre |
 | Dany | https://juannjos24.github.io/invitacion/dany/ | hombre |
+| Sonia | https://juannjos24.github.io/invitacion/sonia/ | mujer |
+| Laura | https://juannjos24.github.io/invitacion/laura/ | mujer |
