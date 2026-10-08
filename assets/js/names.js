@@ -69,6 +69,9 @@ const NAMES = [
   { nombre: 'Laura',    genero: 'mujer' },
   { nombre: 'Angie',    genero: 'mujer' },
   { nombre: 'Miguel',   genero: 'hombre' },
+  { nombre: 'Vero',     genero: 'mujer' },
+  { nombre: 'Aylin',    genero: 'mujer' },
+  { nombre: 'Boane',    genero: 'hombre' },  // revisar
 ];
 
 /* Invitación genérica (cuando no hay nombre o no está registrado).

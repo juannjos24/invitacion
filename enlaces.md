@@ -44,3 +44,6 @@ Generado por `node tools/build-guests.js`. Cada enlace tiene su propia vista pre
 | Laura | https://juannjos24.github.io/invitacion/laura/ | mujer |
 | Angie | https://juannjos24.github.io/invitacion/angie/ | mujer |
 | Miguel | https://juannjos24.github.io/invitacion/miguel/ | hombre |
+| Vero | https://juannjos24.github.io/invitacion/vero/ | mujer |
+| Aylin | https://juannjos24.github.io/invitacion/aylin/ | mujer |
+| Boane | https://juannjos24.github.io/invitacion/boane/ | hombre |
