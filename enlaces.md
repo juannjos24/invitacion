@@ -30,3 +30,13 @@ Generado por `node tools/build-guests.js`. Cada enlace tiene su propia vista pre
 | Yessica | https://juannjos24.github.io/invitacion/yessica/ | mujer |
 | Alejandra | https://juannjos24.github.io/invitacion/alejandra/ | mujer |
 | Brayan | https://juannjos24.github.io/invitacion/brayan/ | hombre |
+| Emmanuel | https://juannjos24.github.io/invitacion/emmanuel/ | hombre |
+| Cheché | https://juannjos24.github.io/invitacion/cheche/ | hombre |
+| Paula | https://juannjos24.github.io/invitacion/paula/ | mujer |
+| Sofia | https://juannjos24.github.io/invitacion/sofia/ | mujer |
+| John | https://juannjos24.github.io/invitacion/john/ | hombre |
+| Ivan | https://juannjos24.github.io/invitacion/ivan/ | hombre |
+| Brenda | https://juannjos24.github.io/invitacion/brenda/ | mujer |
+| Margarito | https://juannjos24.github.io/invitacion/margarito/ | hombre |
+| Jafet | https://juannjos24.github.io/invitacion/jafet/ | hombre |
+| Dany | https://juannjos24.github.io/invitacion/dany/ | hombre |
