@@ -47,3 +47,4 @@ Generado por `node tools/build-guests.js`. Cada enlace tiene su propia vista pre
 | Vero | https://juannjos24.github.io/invitacion/vero/ | mujer |
 | Aylin | https://juannjos24.github.io/invitacion/aylin/ | mujer |
 | Boane | https://juannjos24.github.io/invitacion/boane/ | hombre |
+| Jazmin | https://juannjos24.github.io/invitacion/jazmin/ | mujer |
